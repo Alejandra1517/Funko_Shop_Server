@@ -7,6 +7,7 @@ export class AuthenticationController {
 
   @Get()
   getHello(): string {
+    console.log("hellow inside controller")
     return this.authenticationService.getHello();
   }
 }
