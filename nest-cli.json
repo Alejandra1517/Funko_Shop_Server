@@ -8,24 +8,33 @@
     "tsConfigPath": "apps/funko_shop_project/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/funko_shop_project",
+  "root": "apps/auth",
   "projects": {
-    "funko_shop_project": {
+    "orders": {
       "type": "application",
-      "root": "apps/funko_shop_project",
+      "root": "apps/orders",
       "entryFile": "main",
-      "sourceRoot": "apps/funko_shop_project/src",
+      "sourceRoot": "apps/orders/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/funko_shop_project/tsconfig.app.json"
+        "tsConfigPath": "apps/orders/tsconfig.app.json"
       }
     },
-    "authentication": {
+    "auth": {
       "type": "application",
-      "root": "apps/authentication",
+      "root": "apps/auth",
       "entryFile": "main",
-      "sourceRoot": "apps/authentication/src",
+      "sourceRoot": "apps/auth/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/authentication/tsconfig.app.json"
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
     }
   }
