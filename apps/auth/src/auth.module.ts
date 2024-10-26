@@ -18,7 +18,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       validationSchema: Joi.object({
         JWT_SECRET: Joi.string().required(),
         JWT_EXPIRATION: Joi.string().required(),
-        PORT: Joi.number().required(), //we wil setup this env later
+        HTTP_PORT: Joi.number().required(),
+        TCP_PORT: Joi.number().required(),
       }),
     }),
     JwtModule.registerAsync({
@@ -35,7 +36,6 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
-
 
 
 // import { Module } from '@nestjs/common';
