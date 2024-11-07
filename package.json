@@ -33,6 +33,7 @@
     "pino-pretty": "^11.3.0"
   },
   "devDependencies": {
+    "@nestjs/cli": "^10.4.5",
     "@types/bcryptjs": "^2.4.6",
     "@types/jest": "^29.5.13",
     "@types/mongoose": "^5.11.97",
