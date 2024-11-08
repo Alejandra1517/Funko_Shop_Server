@@ -1,8 +1,3 @@
-// import { Module } from '@nestjs/common';
-
-// @Module({})
-// export class LoggerModule {}
-
 import { Module } from '@nestjs/common';
 import { LoggerModule as PinoLogerModule } from 'nestjs-pino';
 
