@@ -21,6 +21,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         HTTP_PORT: Joi.number().required(),
         TCP_PORT: Joi.number().required(),
       }),
+      envFilePath: './apps/auth/.env',
     }),
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService) => ({

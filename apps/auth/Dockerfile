@@ -1,18 +1,22 @@
 
 # Use Node Alpine as the base image for development
-FROM node:alpine as development
+FROM node:20.16.0-alpine as development
 
 WORKDIR /usr/src/app
 
-COPY package.json package-lock.json ./
-RUN npm install -g && npm install
+COPY package*.json ./
+
+RUN npm install
+
+# COPY package.json package-lock.json ./
+# RUN npm install -g && npm install
 
 COPY . .
 
-RUN npm run build
+RUN npm run build auth
 
 # Create a production image
-FROM node:alpine as production
+FROM node:20.16.0-alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}

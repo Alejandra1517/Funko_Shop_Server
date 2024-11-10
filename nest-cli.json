@@ -8,7 +8,7 @@
     "tsConfigPath": "apps/orders/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/auth",
+  "root": "apps/orders",
   "projects": {
     "orders": {
       "type": "application",
