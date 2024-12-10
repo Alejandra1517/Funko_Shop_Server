@@ -1,22 +1,22 @@
 import { Module } from '@nestjs/common';
-import { OrdersService } from './orders.service';
-import { OrdersController } from './orders.controller';
+import { ProductsService } from './products.service'
+import { ProductsController } from './products.controller';
 import { AUTH_SERVICE, DatabaseModule, LoggerModule } from '@app/common';
-import { OrdersRepository } from './orders.repository';
+import { ProductsRepository } from './products.repository';
 import {
-  OrderDocument,
-  OrderSchema,
-} from './entities/order.entity';
+  ProductDocument,
+  ProductSchema, 
+} from './entities/product.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
     DatabaseModule,
     DatabaseModule.forFeature([
-      { name: OrderDocument.name, schema: OrderSchema },
+      { name: ProductDocument.name, schema: ProductSchema },
+      // { name: Image.name, schema: ImageSchema },
     ]),
     LoggerModule,
     ConfigModule.forRoot({
@@ -25,7 +25,7 @@ import { ProductsModule } from './products/products.module';
         MONGODB_URI: Joi.string().required(),
         HTTP_PORT: Joi.number().required(),
       }),
-      envFilePath: './apps/orders/.env',
+      envFilePath: './apps/products/.env',
     }),
     ClientsModule.registerAsync([
       {
@@ -40,9 +40,8 @@ import { ProductsModule } from './products/products.module';
         inject: [ConfigService],
       },
     ]),
-    ProductsModule,
   ],
-  controllers: [OrdersController],
-  providers: [OrdersService, OrdersRepository],
+  controllers: [ProductsController],
+  providers: [ProductsService, ProductsRepository],
 })
-export class OrdersModule {}
+export class ProductsModule {}

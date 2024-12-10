@@ -55,6 +55,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     return documents;
   }
   FilterQuery;
+  
   async findOneAndDelete(
     filterQuery: FilterQuery<TDocument>,
   ): Promise<TDocument> {
