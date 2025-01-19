@@ -5,29 +5,28 @@ import { Types } from 'mongoose';
 @Schema({ versionKey: false })
 export class ProductDocument extends AbstractDocument {
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: Date, default: Date.now })
+  timestamp: Date;
+
+  @Prop({ type: String })
   name: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String })
   description: string;
 
-  @Prop({ type: Number, required: true })
+  @Prop({ type: Number })
   price: number;
 
-  @Prop({ type: Number, required: true })
+  @Prop({ type: Number })
   stock: Number;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ type: Date })
   createdAt: Date;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ type: Date })
   updatedAt: Date;
-
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Product' }] })
-  product: Types.ObjectId[];
-
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Image' }] })
-  images: Types.ObjectId[]; 
+  // @Prop({ type: [{ type: Types.ObjectId, ref: 'Image' }] })
+  // images: Types.ObjectId[]; 
 
 }
 

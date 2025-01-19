@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Injectable, Logger } from '@nestjs/common';
 import { AbstractRepository } from '@app/common';
@@ -13,4 +13,15 @@ export class ProductsRepository extends AbstractRepository<ProductDocument> {
   ) {
     super(productModel);
   }
+
+  // Método para contar productos por categoría
+    async countByCategoryId(categoryId: string): Promise<number> {
+      // Verificar que el categoryId es un ObjectId válido
+      if (!Types.ObjectId.isValid(categoryId)) {
+        throw new Error('Invalid category ID');
+      }
+  
+      const count = await this.productModel.countDocuments({ categoryId: new Types.ObjectId(categoryId) });
+      return count;
+    }
 }

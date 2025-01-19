@@ -5,10 +5,17 @@
 //     invoiceId: string;
 //   }
 
+import { IsNumber, IsString } from "class-validator";
+
 export class CreateOrderDto {
+  @IsNumber()
   quantity: number;
+
+  @IsNumber()
   total: number;
-  status: boolean;
+
+  @IsString()
+  status: string;
   createdAt: Date;
   updatedAt: Date;
 }

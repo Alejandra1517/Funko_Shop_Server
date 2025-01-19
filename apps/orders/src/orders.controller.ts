@@ -20,11 +20,14 @@ export class OrdersController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async create(
-    @Body() createReservationDto: CreateOrderDto,
+    @Body() createOrderDto: CreateOrderDto,
     @CurrentUser() user: UserDTO,
   ) {
+    console.log("insert: ", createOrderDto)
+    
     return await this.ordersService.create(
-      createReservationDto,
+      createOrderDto,
+      // "678aecc9c99057b7c1f587aa"
       user._id,
     );
   }

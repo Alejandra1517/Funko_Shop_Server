@@ -11,7 +11,8 @@ import {
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { CurrentUser, JwtAuthGuard, UserDTO } from '@app/common';
+import { JwtAuthGuard } from '@app/common';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('products')
 export class ProductsController {
@@ -20,10 +21,11 @@ export class ProductsController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async create(
-    @Body() createReservationDto: CreateProductDto,
+    @Body() createProductDto: CreateProductDto,
   ) {
-    return await this.productsService.create(
-      createReservationDto,
+    return await this.productsService.createProduct(
+      createProductDto,
+      // categoryId
     );
   }
 
@@ -39,6 +41,17 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
+
+  @MessagePattern('category.can_update')
+  async canUpdateCategory(categoryId: string): Promise<boolean> {
+    // Verificar si hay productos asociados a la categoría
+    const hasProducts = await this.productsService.canUpdateCategory(categoryId);
+
+    console.log("count categories products: ", hasProducts)
+
+    return !hasProducts; // Puede modificar si no tiene productos
+  }
+  
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   async update(

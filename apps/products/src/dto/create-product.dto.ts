@@ -1,12 +1,27 @@
+import { IsDate, IsNumber, IsString } from "class-validator";
+
 export class CreateProductDto {
+
+  @IsString()
   name: string;
   description: string;
-  price: number;
-  stock: number;
-  createdAt: Date;
-  updatedAt: Date;
-  categoryId: string;
-  imageId: string;
-}
   
+  @IsNumber()
+  price: number;
 
+  @IsNumber()
+  stock: number;
+  
+  // @IsDate()
+  createdAt: Date;
+  
+  // @IsDate()
+  updatedAt: Date;
+  
+  // @IsString()
+  categoryId: string;
+  
+  // @IsString()
+  imageId: string;
+
+}

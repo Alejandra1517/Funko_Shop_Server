@@ -1,5 +1,6 @@
 import { AbstractDocument } from '@app/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+// import { string } from 'joi';
 
 @Schema({ versionKey: false })
 export class OrderDocument extends AbstractDocument {
@@ -12,13 +13,13 @@ export class OrderDocument extends AbstractDocument {
   @Prop({ type: Number, required: true })
   total: Number;
 
-  @Prop({ type: Boolean, required: true })
-  status: Boolean;
+  @Prop({ type: String, required: true })
+  status: string;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ type: Date })
   createdAt: Date;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ type: Date })
   updatedAt: Date;
 
   @Prop({ type: String, required: true })

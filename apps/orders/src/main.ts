@@ -10,10 +10,18 @@ async function bootstrap() {
   app.use(cookieParser());
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
+      whitelist: true, // Elimina propiedades no definidas en el DTO.
+      forbidNonWhitelisted: true, // Lanza un error si hay propiedades no permitidas.
+      transform: true, // Convierte los datos al tipo definido en el DTO.
     }),
-  );
-  app.useLogger(app.get(Logger));
+  );  
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //   }),
+    
+  // );
+  // app.useLogger(app.get(Logger));
   const configService = app.get(ConfigService);
   await app.listen(configService.get('HTTP_PORT'));
 }

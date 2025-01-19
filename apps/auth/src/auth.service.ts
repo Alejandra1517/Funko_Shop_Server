@@ -25,6 +25,8 @@ export class AuthService {
 
     const token = this.jwtService.sign(tokenPayload);
 
+    console.log("token: ", token)
+
     response.cookie('Authentication', token, {
       expires: expires,
       httpOnly: true,
