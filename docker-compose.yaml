@@ -51,8 +51,18 @@ services:
       - ./apps/categories/.env
     depends_on:
     - rabbitmq
+  cart:
+    build:
+      context: .
+      dockerfile: apps/cart/Dockerfile
+      target: development
+    command: npm run start:dev cart
+    env_file:
+      - ./apps/cart/.env
+    depends_on:
+    - rabbitmq
     ports:
-      - '3003:3003'
+      - '3004:3004'
     volumes:
       - .:/usr/src/app
   rabbitmq:

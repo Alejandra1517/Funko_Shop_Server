@@ -4,6 +4,8 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { CurrentUser } from '../current-user.decorator';
 import { UserDocument } from './models/user.schema';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { UserDTO } from '@app/common';
 
 @Controller('users')
 export class UsersController {
@@ -18,5 +20,10 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   getCurrentUser(@CurrentUser() user: UserDocument) {
     return user;
+  }
+
+  @MessagePattern({ cmd: 'get_user' }) 
+  async getUser(@Payload() user: UserDTO) {
+    return this.userService.getUser(user);
   }
 }

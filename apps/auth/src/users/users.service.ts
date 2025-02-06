@@ -7,6 +7,7 @@ import { UserRepository } from './user.repository';
 import { CreateUserDTO } from './dto/create-user.dto';
 import * as bcryptjs from 'bcryptjs';
 import { GetUserDto } from './dto/get-user.dto';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 @Injectable()
 export class UsersService {
   constructor(private readonly userRepository: UserRepository) {}
